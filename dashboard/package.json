@@ -10,8 +10,7 @@
 	},
 	"devDependencies": {
 		"@evidence-dev/evidence": "^4.0.0",
-		"@evidence-dev/postgres": "^1.0.0",
-		"svelte": "^4.0.0"
+		"@evidence-dev/postgres": "^1.0.0"
 	},
     "type": "module"
 }
