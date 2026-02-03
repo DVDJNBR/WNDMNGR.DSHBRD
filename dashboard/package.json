@@ -1,0 +1,17 @@
+{
+	"name": "dashboard",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"sources": "evidence sources",
+		"dev": "evidence dev",
+		"build": "evidence build",
+		"preview": "evidence preview"
+	},
+	"devDependencies": {
+		"@evidence-dev/evidence": "^4.0.0",
+		"@evidence-dev/postgres": "^1.0.0",
+		"svelte": "^4.0.0"
+	},
+    "type": "module"
+}
