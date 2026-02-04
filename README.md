@@ -19,27 +19,22 @@ Dashboard de visualisation des données éoliennes pour WPD Windmanager France, 
 └── bmad-agent/         # Configuration BMAD
 ```
 
-## Déploiement
+## Deployment
 
-### Cloudflare Pages
+### Vercel (Recommended)
 
-1. Connecter le repo GitHub
-2. Configuration :
-   - **Root Directory**: `dashboard`
-   - **Build Command**: `npm run sources && npm run build`
-   - **Build Output Directory**: `build`
-3. Variables d'environnement :
-   - `DATABASE_URL`: URL de connexion PostgreSQL Supabase
+This project is configured for deployment on Vercel.
 
-## Développement Local
+1.  Push your code to a Git repository (GitHub, GitLab, Bitbucket).
+2.  Import the project into Vercel.
+3.  Vercel should automatically detect the settings (Framework: Other/SvelteKit, Build Command: `npm run build`, Output Directory: `build`).
+4.  Add your Supabase environment variables in the Vercel project settings (`Settings` > `Environment Variables`).
 
-```bash
-cd dashboard
-npm install
-npm run dev
-```
+### Local Development
 
-Le dashboard sera accessible sur `http://localhost:3000`.
+1.  Navigate to the `dashboard` directory: `cd dashboard`
+2.  Install dependencies: `npm install`
+3.  Start the development server: `npm run dev`
 
 ## Documentation
 

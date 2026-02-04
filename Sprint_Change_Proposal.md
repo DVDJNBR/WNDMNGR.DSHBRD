@@ -1,33 +1,50 @@
-# Sprint Change Proposal: Pivot to Evidence on Cloudflare
+# Sprint Change Proposal: Hosting Pivot to Vercel
 
 ## 1. Identified Issue Summary
-**Trigger:** Strategic decision to change the dashboarding technology.
-**Issue:** The project was initially targeting Google Looker Studio connected to Supabase. The user now wants to switch to **Evidence.dev** (Evidence), hosted on **Cloudflare**, while retaining **Supabase** as the database.
-**Rationale:** Evidence offers a code-driven (BI-as-Code) approach which likely aligns better with the user's workflow or requirements than Looker Studio.
+**Trigger:** Deployment Failure on Cloudflare Pages.
+**Issue:** The Evidence framework's core binary (`duckdb-eh.wasm`, ~32MB) exceeds Cloudflare Pages' free tier file size limit of 25MB.
+**Rationale:** Compacting the binary is complex and unstable. Switching to a hosting provider with higher limits is the most efficient solution to maintain momentum.
 
 ## 2. Epic & Artifact Impact
-- **Existing Artifacts:**
-  - `guide_looker_supabase.md`: **OBSOLETE**. This guide connects Supabase to Looker Studio and is no longer relevant.
-  - *No other formal PRD or Architecture docs were found.*
-- **New Requirements:**
-  - Need to define the architecture for **Evidence + Supabase + Cloudflare**.
-  - Need to set up the Evidence project structure.
+- **`docs/epic-1-mvp-setup.md`:**
+  - **Story 2 (Deploy to Cloudflare Pages):** Needs to be replaced with "Deploy to Vercel".
+  - **Risk Mitigation:** Update specific deployment risks (Vercel is generally more permissive for this stack).
+  - **Definition of Done:** Update "Cloudflare deployment" criteria to "Vercel deployment".
+- **`dashboard/package.json`:**
+  - The build script `npm run sources && evidence build` is compatible with Vercel and can be kept.
 
 ## 3. Recommended Path Forward
-**Path:** **Option 3: Re-scoping / Fresh Start.**
-Since the project is in early stages (only a guide existed), we will treat this as a "re-initialization" of the tech stack.
+**Path:** **Option 1: Direct Adjustment.**
+The architecture remains the same (Client-side WASM + Supabase). Only the hosting "container" changes.
+**Target Host:** **Vercel** (Hobby Plan).
+- Supports file sizes up to 100MB+.
+- Provides 6,000 build minutes/month (sufficient for data updates).
 
 ## 4. High-Level Action Plan
-1.  **Cleanup:** Archive or delete `guide_looker_supabase.md` to avoid confusion.
-2.  **Documentation:** Create a lightweight **Project Brief** or **Mini-PRD** to formally document the new stack (Evidence, Supabase, Cloudflare) and the goal (Wind Manager Dashboard).
-3.  **Implementation (Next Steps):**
-    -   Initialize a new Evidence project.
-    -   Configure the Supabase connection in Evidence.
-    -   Set up deployment to Cloudflare Pages.
+1.  **Documentation:** Update Epic 1 to reflect Vercel as the deployment target.
+2.  **Implementation:**
+    -   Connect the GitHub repository to a new Vercel project.
+    -   Configure Environment Variables (`CONNECTION_STRING`) in Vercel.
+    -   Verify successful build and deployment.
 
 ## 5. Agent Handoff Plan
-- **PM (Me):** I will archive the old guide and can help draft the new Project Brief.
-- **Developer/Architect:** Will handle the actual installation of Evidence (`npx degit evidence-dev/template`), Supabase connection config, and Cloudflare setup.
+- **PM:** Update Epic documentation.
+- **Dev:** Perform the Vercel linkage and verify the deployment.
 
 ---
-**Status:** Awaiting Final User Approval.
+**Proposed Edits to `docs/epic-1-mvp-setup.md`:**
+
+**Global Replace:**
+- `Cloudflare Pages` -> `Vercel`
+- `Cloudflare` -> `Vercel`
+
+**Story 2 Update:**
+- **Title:** Deploy to Vercel
+- **Description:** Connect the repository to Vercel to build and deploy the Evidence project.
+- **Acceptance Criteria:**
+  - Project connected in Vercel.
+  - Env vars (Supabase) configured.
+  - Live URL accessible.
+
+---
+**Status:** Awaiting User Confirmation to Apply.
