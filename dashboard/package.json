@@ -3,12 +3,13 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+		"sources": "evidence sources",
 		"dev": "evidence dev",
 		"build": "evidence build",
 		"preview": "evidence preview"
 	},
 	"devDependencies": {
-		"@evidence-dev/evidence": "^35.0.0",
+		"@evidence-dev/evidence": "^40.0.0",
 		"@evidence-dev/postgres": "^1.0.0"
 	},
 	"type": "module"
