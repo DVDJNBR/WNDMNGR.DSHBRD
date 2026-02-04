@@ -8,11 +8,8 @@
 		"preview": "evidence preview"
 	},
 	"devDependencies": {
-		"@evidence-dev/evidence": "^4.0.0",
+		"@evidence-dev/evidence": "^35.0.0",
 		"@evidence-dev/postgres": "^1.0.0"
-	},
-	"overrides": {
-		"vite": "^5.0.0"
 	},
 	"type": "module"
 }
