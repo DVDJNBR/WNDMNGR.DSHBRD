@@ -28,7 +28,7 @@ SELECT
     ft.type_title as farm_type
 FROM supabase.farms f
 LEFT JOIN supabase.farm_types ft ON f.farm_type_id = ft.id
-WHERE f.uuid = '${inputs.selected_farm}'
+WHERE f.uuid = '${inputs.selected_farm.value}'
 ```
 
 ```sql farm_location
@@ -39,7 +39,7 @@ SELECT
     municipality,
     map_reference
 FROM supabase.farm_locations
-WHERE farm_uuid = '${inputs.selected_farm}'
+WHERE farm_uuid = '${inputs.selected_farm.value}'
 ```
 
 ```sql farm_status
@@ -47,7 +47,7 @@ SELECT
     farm_status,
     tcma_status
 FROM supabase.farm_statuses
-WHERE farm_uuid = '${inputs.selected_farm}'
+WHERE farm_uuid = '${inputs.selected_farm.value}'
 ```
 
 ```sql farm_turbines
@@ -59,7 +59,7 @@ SELECT
     rated_power_installed_mw,
     total_mmw
 FROM supabase.farm_turbine_details
-WHERE wind_farm_uuid = '${inputs.selected_farm}'
+WHERE wind_farm_uuid = '${inputs.selected_farm.value}'
 ```
 
 ```sql farm_referents_list
@@ -71,7 +71,7 @@ LEFT JOIN supabase.persons p ON fr.person_uuid = p.uuid
 LEFT JOIN supabase.companies c ON fr.company_uuid = c.uuid
 LEFT JOIN supabase.person_roles pr ON fr.person_role_id = pr.id
 LEFT JOIN supabase.company_roles cr ON fr.company_role_id = cr.id
-WHERE fr.farm_uuid = '${inputs.selected_farm}'
+WHERE fr.farm_uuid = '${inputs.selected_farm.value}'
 ```
 
 ## {farm_info[0].project}
