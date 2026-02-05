@@ -6,7 +6,7 @@ SELECT
     code,
     project,
     spv
-FROM farms
+FROM public.farms
 ORDER BY project
 ```
 
@@ -26,8 +26,8 @@ SELECT
     f.project,
     f.spv,
     ft.type_title as farm_type
-FROM farms f
-LEFT JOIN farm_types ft ON f.farm_type_id = ft.id
+FROM public.farms f
+LEFT JOIN public.farm_types ft ON f.farm_type_id = ft.id
 WHERE f.uuid = '${inputs.selected_farm}'
 ```
 
@@ -38,7 +38,7 @@ SELECT
     department,
     municipality,
     map_reference
-FROM farm_locations
+FROM public.farm_locations
 WHERE farm_uuid = '${inputs.selected_farm}'
 ```
 
@@ -46,7 +46,7 @@ WHERE farm_uuid = '${inputs.selected_farm}'
 SELECT
     farm_status,
     tcma_status
-FROM farm_statuses
+FROM public.farm_statuses
 WHERE farm_uuid = '${inputs.selected_farm}'
 ```
 
@@ -58,7 +58,7 @@ SELECT
     rotor_diameter_m,
     rated_power_installed_mw,
     total_mmw
-FROM farm_turbine_details
+FROM public.farm_turbine_details
 WHERE wind_farm_uuid = '${inputs.selected_farm}'
 ```
 
@@ -66,11 +66,11 @@ WHERE wind_farm_uuid = '${inputs.selected_farm}'
 SELECT
     COALESCE(p.first_name || ' ' || p.last_name, c.name) as referent_name,
     COALESCE(pr.role_name, cr.role_name) as role
-FROM farm_referents fr
-LEFT JOIN persons p ON fr.person_uuid = p.uuid
-LEFT JOIN companies c ON fr.company_uuid = c.uuid
-LEFT JOIN person_roles pr ON fr.person_role_id = pr.id
-LEFT JOIN company_roles cr ON fr.company_role_id = cr.id
+FROM public.farm_referents fr
+LEFT JOIN public.persons p ON fr.person_uuid = p.uuid
+LEFT JOIN public.companies c ON fr.company_uuid = c.uuid
+LEFT JOIN public.person_roles pr ON fr.person_role_id = pr.id
+LEFT JOIN public.company_roles cr ON fr.company_role_id = cr.id
 WHERE fr.farm_uuid = '${inputs.selected_farm}'
 ```
 
@@ -124,5 +124,4 @@ WHERE fr.farm_uuid = '${inputs.selected_farm}'
 
 ## Navigation
 
-- [API Rotorsoft](/rotorsoft) *(à venir)*
-- [Rapports Maintenance](/maintenance) *(à venir)*
+*Pages à venir : API Rotorsoft, Rapports Maintenance*
